@@ -1,0 +1,11 @@
+name: remove apache
+hosts: sai-slave
+remote_user: root  #connect to the slave user which you have to gave the slave machine
+gather_facts: true
+become: true
+tasks:
+  name: remove httpd
+    service:
+      name: httpd
+      autoremove: yes
+      state: absent

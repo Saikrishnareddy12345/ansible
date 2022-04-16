@@ -1,0 +1,19 @@
+---
+- name: simple playbook
+  hosts: sai-slave    #Group name
+  remote_user: root   #which user to you want to connect.here i connected root to root
+  become: true        #to allows the instructions
+  tasks:
+    - name: install httpd     #Modules Block
+      yum:
+        name: httpd
+        state: latest
+    - name: run httpd 
+      service:
+        enabled: true 
+        name: httpd
+        state: started
+    - name: Write Content
+      copy:
+        content: "Hello Ansible....! This is Ansible World"
+        dest: /var/www/html/index.html
