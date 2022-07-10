@@ -1,0 +1,15 @@
+---
+- name: play1
+  hosts: test1
+  become: true
+  remote_user: root
+  tasks:
+    - name: Upload ssh key
+      authorized_key:
+        user: root
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - /home/Sai/ex_rsa.pub    ###Mention the file along with path
+        - /home/Sai/ex1_rsa.pub   ###Mention the file along with path
+        - /home/Sai/ex2_rsa.pub   ###Mention the file along with path
